@@ -1,8 +1,9 @@
 import React from 'react'
 
-function CafeteriaFood(props) {
+function CafeFoodGrid(props) {
     return (
-        <div className='
+        <button
+            className='
          bg-white w-fit inline-flex flex-row px-9 py-4 gap-x-1 rounded-2xl
             hover:scale-105 active:scale-95 transition-all cursor-pointer
          '>
@@ -13,10 +14,9 @@ function CafeteriaFood(props) {
             <div className={`flex text-fuchsia-700 font-semibold flex-col items-center justify-center gap-y-1 text-md font-sans`}>
                 <div>{props.food}</div>
                 <div>Price: {props.price} Rs</div>
-
             </div>
-        </div>
+        </button>
     )
 }
 
-export default CafeteriaFood
+export default CafeFoodGrid

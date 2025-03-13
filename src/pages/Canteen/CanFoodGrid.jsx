@@ -1,6 +1,6 @@
 import React from 'react'
 
-function CanteenFood(props) {
+function CanFoodGrid(props) {
     return (
         <div className='
          bg-white w-fit inline-flex flex-row px-9 py-4 gap-x-1 rounded-2xl
@@ -18,4 +18,4 @@ function CanteenFood(props) {
     )
 }
 
-export default CanteenFood
+export default CanFoodGrid
