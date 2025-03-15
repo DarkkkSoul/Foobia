@@ -2,11 +2,11 @@ import React from 'react'
 import useCart from '../../CustomHooks/useCart'
 
 function CafeFoodGrid(props) {
-    const { foodDetail } = useCart();
+    const { addItem } = useCart();
     return (
         <button
             id={props.id}
-            onClick={() => foodDetail(props.id)}
+            onClick={() => addItem(props.id)}
             className='
          bg-white w-fit inline-flex flex-row px-9 py-4 gap-x-1 rounded-2xl
             hover:scale-105 active:scale-95 transition-all cursor-pointer
