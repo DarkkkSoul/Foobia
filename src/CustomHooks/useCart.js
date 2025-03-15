@@ -5,17 +5,20 @@ import { cafeFoods } from "../pages/Cafeteria/cafeFoodInfo";
 function useCart() {
     const { cart, setCart } = useContext(CartContext);
 
-    const foodDetail = (id) => {
+    const addItem = (id) => {
         const itemId = id;
         cafeFoods.map((food) => {
             if (food.id === itemId) {
-                console.log('item adding', food);
-
                 setCart((prevCart) => [...prevCart, food]);
             }
-        })
+        });
     };
-    return { cart, foodDetail };
+
+    const deleteItem = (id) => {
+        setCart((prevCart) => prevCart.filter((item) => item.id !== id));
+    }
+
+    return { cart, addItem, deleteItem };
 }
 
 export default useCart;
