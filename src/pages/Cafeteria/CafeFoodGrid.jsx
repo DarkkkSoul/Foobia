@@ -1,7 +1,8 @@
 import React from 'react'
-import { foodDetail } from '../Checkout/Checkout'
+import useCart from '../../CustomHooks/useCart'
 
 function CafeFoodGrid(props) {
+    const { foodDetail } = useCart();
     return (
         <button
             id={props.id}
