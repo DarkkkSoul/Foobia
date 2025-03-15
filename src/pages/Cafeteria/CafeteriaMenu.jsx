@@ -12,7 +12,7 @@ function Cafeteria() {
 
                     {
                         cafeFoods.map((food) => (
-                            <CafeFoodGrid food={food.foodName} price={food.price} />
+                            <CafeFoodGrid food={food.foodName} price={food.price} id={food.id} />
                         ))
                     }
 
