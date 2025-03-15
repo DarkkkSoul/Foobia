@@ -1,13 +1,14 @@
 import { NavLink } from 'react-router'
 import './App.css'
+import Header from './pages/Header'
 
 function App() {
 
     return (
         <>
             <div className='flex items-center justify-center h-screen w-full p-5'>
-                <div className='bg-fuchsia-800 w-107 min-h-170 flex flex-col'>
-                    <div className='text-center pt-6 text-3xl font-bold text-white'>DBIT eats</div>
+                <div className='bg-fuchsia-800 w-107 min-h-170 flex flex-col relative'>
+                    <Header />
                     <div className=' flex flex-row gap-2 items-center justify-center'>
 
                         <NavLink to='/cafeteria'
