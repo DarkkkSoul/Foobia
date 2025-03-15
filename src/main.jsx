@@ -6,15 +6,18 @@ import CafeteriaMenu from './pages/Cafeteria/CafeteriaMenu.jsx'
 import CanteenMenu from './pages/Canteen/CanteenMenu.jsx'
 import Creators from './pages/Creators/Creators.jsx'
 import CheckoutPage from './pages/Checkout/CheckoutPage.jsx'
+import CartProvider from './contexts/cart/CartProvider.jsx'
 
 createRoot(document.getElementById('root')).render(
-    <BrowserRouter>
-        <Routes>
-            <Route index element={<App />} />
-            <Route path='/cafeteria' element={<CafeteriaMenu />} />
-            <Route path='/canteen' element={<CanteenMenu />} />
-            <Route path='/creators' element={<Creators />} />
-            <Route path='/checkout' element={<CheckoutPage />} />
-        </Routes>
-    </BrowserRouter>
+    <CartProvider>
+        <BrowserRouter>
+            <Routes>
+                <Route index element={<App />} />
+                <Route path='/cafeteria' element={<CafeteriaMenu />} />
+                <Route path='/canteen' element={<CanteenMenu />} />
+                <Route path='/creators' element={<Creators />} />
+                <Route path='/checkout' element={<CheckoutPage />} />
+            </Routes>
+        </BrowserRouter>
+    </CartProvider>
 )
