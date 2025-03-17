@@ -1,13 +1,13 @@
 export const cafeFoods = [
     {
         foodName: 'Samosa',
-        price: '20',
+        price: 20,
         id: 'id-zwp3-e',
         quantity: 0,
     },
     {
         foodName: 'Egg Puff',
-        price: '20',
+        price: 20,
         id: 'id-wqz6-e',
         quantity: 0,
     },
