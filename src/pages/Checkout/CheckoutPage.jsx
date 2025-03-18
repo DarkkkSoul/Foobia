@@ -1,7 +1,7 @@
 import React from 'react'
-import Header from '../Header'
-import useCart from '../../CustomHooks/useCart';
+import Header from '../Header';
 import FoodGrid from './FoodGrid';
+import useCart from '../../CustomHooks/useCart';
 import Total from './Total';
 function CheckoutPage() {
     const { cart } = useCart();

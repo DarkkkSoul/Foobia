@@ -5,8 +5,8 @@ import { BrowserRouter, Route, Routes } from 'react-router'
 import CafeteriaMenu from './pages/Cafeteria/CafeteriaMenu.jsx'
 import CanteenMenu from './pages/Canteen/CanteenMenu.jsx'
 import Creators from './pages/Creators/Creators.jsx'
-import CheckoutPage from './pages/Checkout/CheckoutPage.jsx'
 import CartProvider from './contexts/cart/CartProvider.jsx'
+import CheckoutPage from './pages/Checkout/CheckoutPage.jsx'
 
 createRoot(document.getElementById('root')).render(
     <CartProvider>

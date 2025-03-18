@@ -1,20 +1,22 @@
 import React from 'react'
+import useCart from '../../CustomHooks/useCart'
 
 function CanFoodGrid(props) {
+    const { addItemCan } = useCart();
     return (
-        <div className='
-         bg-white w-fit inline-flex flex-row px-9 py-4 gap-x-1 rounded-2xl
-            hover:scale-105 active:scale-95 transition-all cursor-pointer
+        <button
+            id={props.id}
+            onClick={() => addItemCan(props.id)}
+            className='
+         bg-white inline-flex flex-col items-center justify-center px-9 py-3 rounded-2xl gap-y-2
+            hover:scale-105 active:scale-95 transition-all cursor-pointer text-fuchsia-700 font-semibold
          '>
-            {/* <div className='w-25 '>
-                <img src={props.image} className='w-fit  rounded-2xl' />
-
-            </div> */}
-            <div className={`flex text-fuchsia-700 font-semibold flex-col items-center justify-center gap-y-1 text-md font-sans`}>
-                <div>{props.food}</div>
-                <div>Price: {props.price} Rs</div>
-            </div>
-        </div>
+            <img src={`/foodImages/${props.food}.png`} className='
+                w-25
+            ' />
+            <div>{props.food}</div>
+            <div>Price: {props.price} Rs</div>
+        </button>
     )
 }
 

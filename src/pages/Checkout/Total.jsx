@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import useCart from '../../CustomHooks/useCart';
 
-function Total(props) {
+function Total() {
 
     const [total, setTotal] = useState(0);
     const { cart } = useCart();
 
     useEffect(() => {
         let sum = 0;
-        cart.forEach((item) => {
+        cart.forEach((item) => {    // Here I can use .reduce()!
             sum += Number(item.price);
         })
         setTotal(sum);
