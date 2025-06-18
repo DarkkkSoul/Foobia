@@ -4,6 +4,8 @@ import connectToDb from './database/connectToDb.js';
 import dotenv from 'dotenv'
 import cafeFoodRouter from './routes/cafeFood.route.js';
 import canteenFoodRouter from './routes/canteenFood.route.js';
+import errorMiddleware from './middlewares/error.middleware.js';
+import cookieParser from 'cookie-parser';
 
 dotenv.config();
 
@@ -11,10 +13,18 @@ const app = express();
 
 const port = process.env.PORT || 5000;
 
+// middlewares
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
+// routes
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/cafeteria', cafeFoodRouter);
 app.use('/api/v1/canteen', canteenFoodRouter);
+
+// error handling
+app.use(errorMiddleware);
 
 
 app.get('/', (req, res) => {
