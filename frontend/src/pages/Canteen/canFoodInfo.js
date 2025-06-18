@@ -2,6 +2,7 @@ export const canFoods = [
     {
         foodName: 'Coffee',
         price: '15',
+        quantity: 1,
         id: 'id-nhfn-e'
     },
     {
