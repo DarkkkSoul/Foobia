@@ -1,15 +1,19 @@
-import jwt from 'jsonwbtoken'
+import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
-import Admin from '../models/admin.model';
+import Admin from '../models/admin.model.js';
 
 dotenv.config();
 
-const authorizeMiddle = (req, res, next) => {
+const authorizeMiddleware = async (req, res, next) => {
     try {
         let token;
 
         if (req.cookies) {
             token = req.cookies.token;
+        }
+
+        if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+            token = req.headers.authorization.split(' ')[1];
         }
 
         if (!token) {
@@ -22,7 +26,7 @@ const authorizeMiddle = (req, res, next) => {
 
         const adminId = decoded.adminId;
 
-        const admin = Admin.findById(adminId);
+        const admin = await Admin.findById(adminId);
         if (!admin) {
             const error = new Error("Admin not found");
             error.statusCode = 400;
@@ -38,4 +42,4 @@ const authorizeMiddle = (req, res, next) => {
     }
 }
 
-export default authorizeMiddle;
+export default authorizeMiddleware

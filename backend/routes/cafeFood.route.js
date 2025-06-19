@@ -1,11 +1,13 @@
 import Router from 'express'
+import { createCafeFood, showCafeMenu } from '../controllers/cafeFood.controller.js';
+import authorizeMiddleware from '../middlewares/auth.middleware.js';
 
 const cafeFoodRouter = Router();
 
 // this will be visible for admins -- create food through admin page
-cafeFoodRouter.post('/', (req, res) => res.send({ successMessage: "create cafeteria food" }));
+cafeFoodRouter.post('/admin/add', authorizeMiddleware, createCafeFood);
 
 // this will be visible for students
-cafeFoodRouter.get('/menu', (req, res) => res.send({ successMessage: "showing cafe menu" }));
+cafeFoodRouter.get('/menu', showCafeMenu);
 
 export default cafeFoodRouter;
