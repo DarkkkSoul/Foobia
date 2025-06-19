@@ -48,3 +48,41 @@ export const signUpController = async (req, res, next) => {
         next(error);
     }
 }
+
+export const loginController = async (req, res, next) => {
+    try {
+
+        const { email, password } = req.body;
+
+        const admin = await Admin.findOne({ email });
+        if (!admin) {
+            return res.status(400).json({
+                success: false,
+                message: "User doesnot exsist"
+            });
+        }
+
+        const isPassValid = await bcrypt.compare(password, admin.password);
+
+        if (!isPassValid) {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid password"
+            });
+        }
+
+        const token = jwt.sign({ adminId: admin._id }, process.env.JWT_SECERT_KEY, { expiresIn: process.env.JWT_EXPIRY });
+
+        return res.status(200).json({
+            success: true,
+            message: "User logged in successfully",
+            data: {
+                token,
+                admin: admin
+            }
+        });
+
+    } catch (error) {
+        next(error);
+    }
+}
