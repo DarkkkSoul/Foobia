@@ -31,6 +31,14 @@ export const signUpController = async (req, res, next) => {
 
         const token = jwt.sign({ adminId: newAdmins[0]._id }, process.env.JWT_SECERT_KEY, { expiresIn: process.env.JWT_EXPIRY });
 
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production', // true in prod, false locally
+            maxAge: 86400000,
+            sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
+            path: '/',
+        });
+
         mongooseSession.commitTransaction();
         await mongooseSession.endSession();
 
@@ -73,13 +81,43 @@ export const loginController = async (req, res, next) => {
 
         const token = jwt.sign({ adminId: admin._id }, process.env.JWT_SECERT_KEY, { expiresIn: process.env.JWT_EXPIRY });
 
+        // store token in cookie
+
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production', // true in prod, false locally
+            maxAge: 86400000,
+            sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
+            path: '/',
+        });
+
         return res.status(200).json({
             success: true,
-            message: "User logged in successfully",
+            message: "Admin logged in successfully",
             data: {
                 token,
                 admin: admin
             }
+        });
+
+    } catch (error) {
+        next(error);
+    }
+};
+
+export const logoutController = async (req, res, next) => {
+    try {
+
+        res.clearCookie('token', {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
+            path: '/',
+        });
+
+        return res.status(200).json({
+            success: true,
+            message: "Admin logged out successfully",
         });
 
     } catch (error) {
