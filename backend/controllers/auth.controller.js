@@ -64,19 +64,17 @@ export const loginController = async (req, res, next) => {
 
         const admin = await Admin.findOne({ email });
         if (!admin) {
-            return res.status(400).json({
-                success: false,
-                message: "User doesnot exsist"
-            });
+            const error = new Error("Admin not found");
+            error.statusCode = 400;
+            throw error;
         }
 
         const isPassValid = await bcrypt.compare(password, admin.password);
 
         if (!isPassValid) {
-            return res.status(400).json({
-                success: false,
-                message: "Invalid password"
-            });
+            const error = new Error("Invalid password");
+            error.statusCode = 400;
+            throw error;
         }
 
         const token = jwt.sign({ adminId: admin._id }, process.env.JWT_SECERT_KEY, { expiresIn: process.env.JWT_EXPIRY });
