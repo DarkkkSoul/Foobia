@@ -29,7 +29,7 @@ const authorizeMiddle = (req, res, next) => {
             throw error;
         }
 
-        req.user = user;
+        req.admin = admin;
         next();
 
 
