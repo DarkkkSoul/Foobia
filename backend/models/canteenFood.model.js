@@ -9,12 +9,13 @@ const canteenFoodModel = mongoose.Schema({
         type: String,
         required: true,
     },
-    id: {
-        type: String,
-        required: true
-    },
     quantity: {
         type: Number,
+        default: 1,
+    },
+    createdBy: {
+        type: mongoose.Schema.Types.String,
+        ref: 'Admin',
         required: true
     }
 }, { timestamps: true });
