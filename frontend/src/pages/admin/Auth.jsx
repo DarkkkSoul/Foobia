@@ -30,7 +30,7 @@ function Auth() {
             if (response.ok) {
                 setMessage(data.message);
                 setTimeout(() => {
-                    navigate('/admin');
+                    navigate('/admin/cafeteria');
                 }, 1000)
             } else {
                 setMessage(data.errorMessage);

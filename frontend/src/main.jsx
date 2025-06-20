@@ -20,7 +20,7 @@ createRoot(document.getElementById('root')).render(
                 <Route path='/creators' element={<Creators />} />
                 <Route path='/checkout' element={<CheckoutPage />} />
                 <Route path='/auth' element={<Auth />} />
-                <Route path='/admin' element={<Admin />} />
+                <Route path='/admin/cafeteria' element={<Admin />} />
             </Routes>
         </BrowserRouter>
     </CartProvider>
