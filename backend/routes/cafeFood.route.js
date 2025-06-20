@@ -5,7 +5,7 @@ import authorizeMiddleware from '../middlewares/auth.middleware.js';
 const cafeFoodRouter = Router();
 
 // this will be visible for admins -- create food through admin page
-cafeFoodRouter.post('/admin/add', authorizeMiddleware, createCafeFood);
+cafeFoodRouter.post('/add', authorizeMiddleware, createCafeFood);
 
 // this will be visible for students
 cafeFoodRouter.get('/menu', showCafeMenu);
