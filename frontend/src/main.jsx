@@ -9,6 +9,7 @@ import CartProvider from './contexts/cart/CartProvider.jsx'
 import CheckoutPage from './pages/Checkout/CheckoutPage.jsx'
 import Auth from './pages/admin/Auth.jsx'
 import AdminCafe from './pages/admin/AdminCafe.jsx'
+import AdminCanteen from './pages/admin/AdminCanteen.jsx'
 
 createRoot(document.getElementById('root')).render(
     <CartProvider>
@@ -21,6 +22,7 @@ createRoot(document.getElementById('root')).render(
                 <Route path='/checkout' element={<CheckoutPage />} />
                 <Route path='/auth' element={<Auth />} />
                 <Route path='/admin/cafeteria' element={<AdminCafe />} />
+                <Route path='/admin/canteen' element={<AdminCanteen />} />
             </Routes>
         </BrowserRouter>
     </CartProvider>

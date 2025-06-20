@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router';
 import FoodItem from './FoodItem';
-import { useNavigate } from 'react-router-dom'
-import { Link } from 'react-router';
 
-function AdminCafe() {
+function AdminCanteen() {
 
     const navigate = useNavigate();
 
@@ -12,10 +11,10 @@ function AdminCafe() {
     const [price, setPrice] = useState('');
     const [message, setMessage] = useState('');
 
-    const handleCafeteriaSubmit = async (e) => {
+    const handleCanteenSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/cafeteria/add`, {
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/canteen/add`, {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
@@ -59,13 +58,13 @@ function AdminCafe() {
 
     // display 
 
-    const [cafeMenu, setCafeMenu] = useState([]);
+    const [canteenMenu, setCanteenMenu] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
-        const displayCafeFood = async () => {
+        const displayCanteenFood = async () => {
             try {
-                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/cafeteria/menu`, {
+                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/canteen/menu`, {
                     method: 'GET',
                     credentials: 'include'
                 });
@@ -73,7 +72,7 @@ function AdminCafe() {
                 const data = await response.json();
 
                 if (response.ok) {
-                    setCafeMenu(data.menu.cafeMenu);
+                    setCanteenMenu(data.menu.canteenMenu);
                 } else {
                     setErrorMessage(data.errorMessage);
                 }
@@ -82,7 +81,7 @@ function AdminCafe() {
                 console.log('ERROR:', error);
             }
         }
-        displayCafeFood();
+        displayCanteenFood();
     }, [message]);
 
     const handleLogout = async () => {
@@ -100,36 +99,36 @@ function AdminCafe() {
         }
 
     }
-
     return (
         <div className="min-h-screen flex gap-x-10 bg-gradient-to-br from-pink-300 via-fuchsia-500 to-purple-800 p-6">
 
             <div className="gap-y-10 items-center justify-center bg-gradient-to-br from-pink-200 via-fuchsia-300 to-purple-400 h-full p-6 rounded-md">
 
-                {/* First Form */}
+
                 <div className="w-full max-w-md bg-white rounded-xl shadow-md p-8">
-                    <h2 className="text-xl font-semibold text-purple-800 mb-6 text-center">Cafeteria</h2>
-                    <form className="flex flex-col gap-4" onSubmit={handleCafeteriaSubmit}>
+                    <h2 className="text-xl font-semibold text-purple-800 mb-6 text-center">Canteen</h2>
+                    <form className="flex flex-col gap-4" onSubmit={handleCanteenSubmit}>
                         <div className="flex flex-col">
                             <label className="text-sm font-medium text-gray-700">Item Name</label>
                             <input
+                                required
                                 type="text"
                                 placeholder="Enter Food Name"
                                 className="mt-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
                                 value={foodName}
                                 onChange={(e) => setFoodName(e.target.value)}
-                                required
                             />
                         </div>
-                        <div className="flex flex-col">
+                        <div
+                            className="flex flex-col">
                             <label className="text-sm font-medium text-gray-700">Price</label>
                             <input
+                                required
                                 type="text"
                                 placeholder="Enter Price"
                                 className="mt-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
                                 value={price}
                                 onChange={(e) => setPrice(e.target.value)}
-                                required
                             />
                         </div>
                         <button
@@ -141,20 +140,21 @@ function AdminCafe() {
                     </form>
                     {message && <p className="text-purple-700 mt-4 text-center text-xs">{message}</p>}
                 </div>
-
                 <button onClick={handleLogout}>Logout</button>
-                <Link to='/admin/canteen'>Canteen</Link>
+                <Link to='/admin/cafeteria'>Cafeteria</Link>
+
             </div>
 
             <div className='w-full bg-gradient-to-br from-pink-200 via-fuchsia-300 to-purple-400 rounded-md p-5 grid grid-cols-5 grid-rows-8 gap-4'>
-                {cafeMenu.map((item) => (
+                {canteenMenu.map((item) => (
                     <FoodItem key={item._id} foodName={item.foodName} price={item.price} />
                 ))}
                 {errorMessage && <p className="text-purple-700 mt-4 text-center text-xs">{errorMessage}</p>}
             </div>
 
         </div>
+
     )
 }
 
-export default AdminCafe
+export default AdminCanteen
