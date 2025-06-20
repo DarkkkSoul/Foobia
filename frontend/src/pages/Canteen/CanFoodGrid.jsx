@@ -17,6 +17,7 @@ function CanFoodGrid(props) {
             <div>{props.food}</div>
             <div>Price: {props.price} Rs</div>
         </button>
+
     )
 }
 
