@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import FoodItem from './FoodItem';
+import { useNavigate } from 'react-router-dom'
 
-function Admin() {
+function AdminCafe() {
+
+    const navigate = useNavigate();
 
     // add
     const [foodName, setFoodName] = useState('');
@@ -11,7 +14,7 @@ function Admin() {
     const handleCafeteriaSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/cafeteria/add`, {
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/cafeteria/add`, {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
@@ -33,6 +36,10 @@ function Admin() {
             } else {
                 setMessage(data.errorMessage);
                 console.log(data.errorMessage);
+                setTimeout(() => {
+                    setFoodName('');
+                    setPrice('');
+                }, 1000);
             }
 
 
@@ -57,7 +64,7 @@ function Admin() {
     useEffect(() => {
         const displayCafeFood = async () => {
             try {
-                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/cafeteria/menu`, {
+                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/cafeteria/menu`, {
                     method: 'GET',
                     credentials: 'include'
                 });
@@ -76,6 +83,22 @@ function Admin() {
         }
         displayCafeFood();
     }, [message]);
+
+    const handleLogout = async () => {
+        try {
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/auth/logout`, {
+                method: 'POST',
+                credentials: 'include'
+            });
+
+            if (response.ok) {
+                navigate('/auth');
+            }
+        } catch (error) {
+            console.log('ERROR:', error);
+        }
+
+    }
 
     return (
         <div className="min-h-screen flex gap-x-10 bg-gradient-to-br from-pink-300 via-fuchsia-500 to-purple-800 p-6">
@@ -117,6 +140,8 @@ function Admin() {
                     </form>
                     {message && <p className="text-purple-700 mt-4 text-center text-xs">{message}</p>}
                 </div>
+
+                <button onClick={handleLogout}>Logout</button>
 
                 {/* Second Form
                 <div className="w-full max-w-md bg-white rounded-xl shadow-md p-8">
@@ -164,4 +189,4 @@ function Admin() {
     )
 }
 
-export default Admin
+export default AdminCafe
