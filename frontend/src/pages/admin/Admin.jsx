@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
+import FoodItem from './FoodItem';
 
 function Admin() {
 
+    // add
     const [foodName, setFoodName] = useState('');
     const [price, setPrice] = useState('');
     const [message, setMessage] = useState('');
@@ -47,10 +49,38 @@ function Admin() {
         }
     }, [message]);
 
+    // display 
+
+    const [cafeMenu, setCafeMenu] = useState([]);
+    const [errorMessage, setErrorMessage] = useState('');
+
+    useEffect(() => {
+        const displayCafeFood = async () => {
+            try {
+                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/cafeteria/menu`, {
+                    method: 'GET',
+                    credentials: 'include'
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    setCafeMenu(data.menu.cafeMenu);
+                } else {
+                    setErrorMessage(data.errorMessage);
+                }
+
+            } catch (error) {
+                console.log('ERROR:', error);
+            }
+        }
+        displayCafeFood();
+    }, [message]);
+
     return (
         <div className="min-h-screen flex gap-x-10 bg-gradient-to-br from-pink-300 via-fuchsia-500 to-purple-800 p-6">
 
-            <div className="flex flex-col gap-y-10 items-center justify-center bg-gradient-to-br from-pink-200 via-fuchsia-300 to-purple-400 min-h-screen p-6">
+            <div className="gap-y-10 items-center justify-center bg-gradient-to-br from-pink-200 via-fuchsia-300 to-purple-400 h-full p-6 rounded-md">
 
                 {/* First Form */}
                 <div className="w-full max-w-md bg-white rounded-xl shadow-md p-8">
@@ -88,7 +118,7 @@ function Admin() {
                     {message && <p className="text-purple-700 mt-4 text-center text-xs">{message}</p>}
                 </div>
 
-                {/* Second Form */}
+                {/* Second Form
                 <div className="w-full max-w-md bg-white rounded-xl shadow-md p-8">
                     <h2 className="text-xl font-semibold text-purple-800 mb-6 text-center">Canteen</h2>
                     <form className="flex flex-col gap-4">
@@ -119,12 +149,16 @@ function Admin() {
                             Create
                         </button>
                     </form>
-                </div>
+                </div> */}
 
             </div>
 
-
-            <div>view</div>
+            <div className='w-full bg-gradient-to-br from-pink-200 via-fuchsia-300 to-purple-400 rounded-md p-5 grid grid-cols-5 grid-rows-8 gap-4'>
+                {cafeMenu.map((item) => (
+                    <FoodItem key={item._id} foodName={item.foodName} price={item.price} />
+                ))}
+                {errorMessage && <p className="text-purple-700 mt-4 text-center text-xs">{errorMessage}</p>}
+            </div>
 
         </div>
     )
