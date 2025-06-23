@@ -37,7 +37,7 @@ function CafeteriaMenu() {
                 <div className='grid grid-cols-2 gap-y-3 justify-items-center'>
                     {
                         cafeMenu.map((food) => (
-                            <CafeFoodGrid food={food.foodName} price={food.price} key={food._id} />
+                            <CafeFoodGrid foodName={food.foodName} price={food.price} key={food._id} id={food._id} />
                         ))
                     }
                 </div>

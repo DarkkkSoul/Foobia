@@ -13,7 +13,7 @@ function CheckoutPage() {
                     <div className='flex flex-col gap-y-3'>
                         {
                             cart.map((item) => (
-                                <FoodGrid food={item.foodName} price={item.price} id={item.id} />
+                                <FoodGrid foodName={item.foodName} price={item.price} id={item._id} />
                             ))
                         }
                     </div>

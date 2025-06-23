@@ -36,8 +36,8 @@ function CanteenMenu() {
                 <Header />
                 <div className='grid grid-cols-2 gap-y-3 justify-items-center'>
                     {
-                        canteenMenu.map((food) => (
-                            <CanFoodGrid food={food.foodName} price={food.price} key={food._id} />
+                        canteenMenu.map((item) => (
+                            <CanFoodGrid foodName={item.foodName} price={item.price} key={item._id} id={item._id} />
                         ))
                     }
 
