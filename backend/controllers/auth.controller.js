@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import Admin from '../models/admin.model.js';
+import User from '../models/user.model.js';
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
@@ -15,9 +15,11 @@ export const signUpController = async (req, res, next) => {
 
         const { name, email, password } = req.body;
 
-        const admin = await Admin.findOne({ email });
+        const user = await User.findOne({ email });
 
-        if (admin) {
+        if (user) {
+            await mongooseSession.abortTransaction();
+            await mongooseSession.endSession();
             return res.status(400).json({
                 success: false,
                 message: 'User already exist'
@@ -27,9 +29,9 @@ export const signUpController = async (req, res, next) => {
         // const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, 10);
         //array of objects
-        const newAdmins = await Admin.create([{ name, email, password: hashedPassword }], { session: mongooseSession });
+        const newUsers = await User.create([{ name, email, password: hashedPassword }], { session: mongooseSession });
 
-        const token = jwt.sign({ adminId: newAdmins[0]._id }, process.env.JWT_SECERT_KEY, { expiresIn: process.env.JWT_EXPIRY });
+        const token = jwt.sign({ userId: newUsers[0]._id }, process.env.JWT_SECERT_KEY, { expiresIn: process.env.JWT_EXPIRY });
 
         res.cookie('token', token, {
             httpOnly: true,
@@ -39,7 +41,7 @@ export const signUpController = async (req, res, next) => {
             path: '/',
         });
 
-        mongooseSession.commitTransaction();
+        await mongooseSession.commitTransaction();
         await mongooseSession.endSession();
 
         return res.status(200).json({
@@ -47,7 +49,7 @@ export const signUpController = async (req, res, next) => {
             message: "User created successfully",
             data: {
                 token,
-                admin: newAdmins[0]
+                user: newUsers[0]
             }
         });
     } catch (error) {
@@ -62,14 +64,14 @@ export const loginController = async (req, res, next) => {
 
         const { email, password } = req.body;
 
-        const admin = await Admin.findOne({ email });
-        if (!admin) {
-            const error = new Error("Admin not found");
+        const user = await User.findOne({ email });
+        if (!user) {
+            const error = new Error("User not found");
             error.statusCode = 400;
             throw error;
         }
 
-        const isPassValid = await bcrypt.compare(password, admin.password);
+        const isPassValid = await bcrypt.compare(password, user.password);
 
         if (!isPassValid) {
             const error = new Error("Invalid password");
@@ -77,7 +79,7 @@ export const loginController = async (req, res, next) => {
             throw error;
         }
 
-        const token = jwt.sign({ adminId: admin._id }, process.env.JWT_SECERT_KEY, { expiresIn: process.env.JWT_EXPIRY });
+        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECERT_KEY, { expiresIn: process.env.JWT_EXPIRY });
 
         // store token in cookie
 
@@ -91,10 +93,10 @@ export const loginController = async (req, res, next) => {
 
         return res.status(200).json({
             success: true,
-            message: "Admin logged in successfully",
+            message: "User logged in successfully",
             data: {
                 token,
-                admin: admin
+                user: user
             }
         });
 
@@ -105,7 +107,6 @@ export const loginController = async (req, res, next) => {
 
 export const logoutController = async (req, res, next) => {
     try {
-
         res.clearCookie('token', {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
@@ -115,7 +116,7 @@ export const logoutController = async (req, res, next) => {
 
         return res.status(200).json({
             success: true,
-            message: "Admin logged out successfully",
+            message: "User logged out successfully",
         });
 
     } catch (error) {

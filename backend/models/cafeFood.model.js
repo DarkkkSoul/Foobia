@@ -15,7 +15,7 @@ const cafeFoodModel = new mongoose.Schema({
     },
     createdBy: {
         type: mongoose.Schema.Types.String,
-        ref: 'Admin',
+        ref: 'User',
         required: true
     }
 }, { timestamps: true });
