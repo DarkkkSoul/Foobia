@@ -30,6 +30,7 @@ function Total() {
                     <div className='font-semibold'>
                         {total} Rs</div>
                 </div>
+                <button className='bg-white absolute bottom-5 right-5 hover:opacity-80 text-fuchsia-900 font-semibold rounded-xl px-6 py-2' onClick={() => console.log(cart)}>Checkout</button>
             </div>
         )
     }

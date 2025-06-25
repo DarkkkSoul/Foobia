@@ -30,7 +30,11 @@ function Auth() {
             if (response.ok) {
                 setMessage(data.message);
                 setTimeout(() => {
-                    navigate('/admin/cafeteria');
+                    if (data.data.user.email === 'admin@gmail.com') {
+                        navigate('/admin/cafeteria');
+                    } else {
+                        navigate('/home');
+                    }
                 }, 1000)
             } else {
                 setMessage(data.errorMessage);
@@ -45,7 +49,6 @@ function Auth() {
             console.log('ERROR:', error);
         }
     }
-
     useEffect(() => {
         if (message) {
             setTimeout(() => {

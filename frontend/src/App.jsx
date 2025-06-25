@@ -23,13 +23,6 @@ function App() {
                                 Canteen
                             </NavLink>
                         </div>
-
-                        <div className='text-center text-lg text-white'>
-                            <NavLink to='/auth' className='bg-white text-fuchsia-700 py-4 px-8 font-semibold rounded-md hover:scale-105 transition-all active:scale-95 cursor-pointer'>
-
-                                Admin
-                            </NavLink>
-                        </div>
                         <div className='text-center text-md text-white'>
                             <NavLink to='/creators' className='hover:text-fuchsia-200 hover:cursor-alias'>
                                 Know creators &#128279;

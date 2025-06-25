@@ -13,12 +13,10 @@ export const createCafeFood = async (req, res, next) => {
                 }
             })
         } else {
-            res.status(400).json({
-                success: false,
-                message: 'Unauthorized'
-            })
+            const error = new Error("Unauthorized");
+            error.statusCode = 404;
+            throw error;
         }
-
     } catch (error) {
         next(error);
     }

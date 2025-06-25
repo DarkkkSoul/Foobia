@@ -93,7 +93,7 @@ function AdminCafe() {
             });
 
             if (response.ok) {
-                navigate('/auth');
+                navigate('/');
             }
         } catch (error) {
             console.log('ERROR:', error);
