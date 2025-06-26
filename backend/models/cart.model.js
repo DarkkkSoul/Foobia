@@ -1,17 +1,9 @@
 import mongoose from "mongoose";
 
 const cartModel = new mongoose.Schema({
-    foodName: {
-        type: String,
-        required: true,
-    },
-    price: {
-        type: String,
-        required: true,
-    },
-    quantity: {
-        type: Number,
-        default: 1,
+    cartDetail: {
+        type: Array,
+        required: true
     },
     createdBy: {
         type: mongoose.Schema.Types.String,

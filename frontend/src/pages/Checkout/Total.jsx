@@ -15,13 +15,26 @@ function Total() {
     }, [cart]);
 
     const [message, setMessage] = useState('');
+    useEffect(() => {
+        if (message) {
+            setTimeout(() => {
+                setMessage('')
+            }, 1000);
+        }
+    })
+
+    const cleanCart = cart.map((item) => ({
+        foodName: item.foodName,
+        price: item.price,
+        quantity: item.quantity
+    }));
 
     const handleCheckout = async () => {
         try {
             const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/cart/checkout`, {
                 method: 'POST',
                 credentials: 'include',
-                body: JSON.stringify({ cart }),
+                body: JSON.stringify({ cartDetail: cleanCart }),
                 headers: {
                     "Content-Type": "application/json",
                 },
