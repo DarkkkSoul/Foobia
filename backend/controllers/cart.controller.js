@@ -15,3 +15,19 @@ export const sentCartData = async (req, res, next) => {
         next(error);
     }
 }
+
+export const viewCartData = async (req, res, next) => {
+    try {
+
+        const cartDetails = await Cart.find();
+
+        res.status(200).json({
+            success: true,
+            message: 'Cart Data loaded',
+            data: cartDetails
+        })
+
+    } catch (error) {
+        next(error);
+    }
+}
