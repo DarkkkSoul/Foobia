@@ -6,10 +6,6 @@ import Total from './Total';
 function CheckoutPage() {
     const { cart } = useCart();
 
-    const submitCart = () => {
-
-    }
-
     return (
         <div className='flex items-center justify-center h-screen w-full bg-white p-5'>
             <div className='bg-fuchsia-800 w-107 h-170 flex flex-col relative '>

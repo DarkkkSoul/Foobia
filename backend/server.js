@@ -7,6 +7,7 @@ import canteenFoodRouter from './routes/canteenFood.route.js';
 import errorMiddleware from './middlewares/error.middleware.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors'
+import cartRouter from './routes/cart.route.js';
 
 dotenv.config();
 
@@ -29,6 +30,7 @@ app.use(cookieParser());
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/cafeteria', cafeFoodRouter);
 app.use('/api/v1/canteen', canteenFoodRouter);
+app.use('/api/v1/cart', cartRouter);
 
 // error handling
 app.use(errorMiddleware);
