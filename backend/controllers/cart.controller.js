@@ -3,7 +3,7 @@ import Cart from "../models/cart.model.js";
 export const sentCartData = async (req, res, next) => {
     try {
 
-        const cartDetails = await Cart.create({ ...req.body, createdBy: req.user.name });
+        const cartDetails = await Cart.create({ ...req.body, orderBy: req.user.name });
 
         res.status(200).json({
             success: true,
@@ -19,12 +19,12 @@ export const sentCartData = async (req, res, next) => {
 export const viewCartData = async (req, res, next) => {
     try {
 
-        const cartDetails = await Cart.find();
+        const completeCart = await Cart.find();
 
         res.status(200).json({
             success: true,
             message: 'Cart Data loaded',
-            data: cartDetails
+            completeCart
         })
 
     } catch (error) {

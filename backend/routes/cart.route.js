@@ -7,6 +7,6 @@ const cartRouter = Router();
 cartRouter.post('/checkout', authorizeMiddleware, sentCartData);
 
 //show cart in admin page
-cartRouter.get('/admin', authorizeMiddleware, viewCartData);
+cartRouter.get('/cafeteria/admin', authorizeMiddleware, viewCartData);
 
 export default cartRouter;

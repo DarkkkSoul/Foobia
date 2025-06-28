@@ -144,6 +144,7 @@ function AdminCafe() {
                 <div className='flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-10'>
                     <button onClick={handleLogout} className='bg-gradient-to-r from-red-600 to-orange-400 px-6 py-2.5 rounded-xl text-white font-semibold hover:scale-105 active:scale-95 transition-all cursor-pointer tracking-wide w-full sm:w-auto'>Logout</button>
                     <Link to='/admin/canteen' className='bg-gradient-to-r from-fuchsia-600 to-pink-600 px-7 py-2.5 rounded-xl text-white font-semibold hover:scale-105 active:scale-95 transition-all cursor-pointer tracking-wide w-full sm:w-auto text-center'>Canteen</Link>
+                    <Link to='/admin/cafeteria/cart' className='bg-gradient-to-r from-fuchsia-600 to-pink-600 px-7 py-2.5 rounded-xl text-white font-semibold hover:scale-105 active:scale-95 transition-all cursor-pointer tracking-wide w-full sm:w-auto text-center'>Cart</Link>
                 </div>
             </div>
 

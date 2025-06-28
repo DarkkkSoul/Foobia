@@ -5,7 +5,7 @@ const cartModel = new mongoose.Schema({
         type: Array,
         required: true
     },
-    createdBy: {
+    orderBy: {
         type: mongoose.Schema.Types.String,
         ref: 'User',
         required: true
