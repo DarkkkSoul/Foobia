@@ -34,7 +34,7 @@ function Total() {
             const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/cart/checkout`, {
                 method: 'POST',
                 credentials: 'include',
-                body: JSON.stringify({ cartDetail: cleanCart }),
+                body: JSON.stringify({ cartDetails: cleanCart }),
                 headers: {
                     "Content-Type": "application/json",
                 },

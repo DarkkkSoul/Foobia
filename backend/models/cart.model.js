@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const cartModel = new mongoose.Schema({
-    cartDetail: {
+    cartDetails: {
         type: Array,
         required: true
     },
