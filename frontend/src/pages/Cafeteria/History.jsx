@@ -36,21 +36,33 @@ function History() {
 
     return (
         <div className="min-h-screen flex flex-col lg:flex-row gap-y-8 lg:gap-x-10 bg-gradient-to-br from-pink-300 via-fuchsia-500 to-purple-800 p-4 sm:p-6">
-            <div className="flex flex-col gap-y-8 min-h-screen bg-gradient-to-br from-pink-200 via-fuchsia-300 to-purple-400 min-w-full lg:w-[30%] p-4 sm:p-6 rounded-md shadow-2xl">
-                <div>
-                    <Link to='/cafeteria'>
-                        back
+
+            {/* Sidebar */}
+            <div className="flex flex-col  gap-y-6 min-h-[40vh] lg:min-h-screen bg-gradient-to-br from-pink-200 via-fuchsia-300 to-purple-400 w-full lg:w-[100%] p-4 sm:p-6 rounded-md shadow-2xl">
+
+                {/* Header */}
+                <div className="flex justify-between items-center">
+                    <h2 className="text-xl sm:text-2xl font-bold text-purple-900">Cart History</h2>
+                    <Link to="/cafeteria" className="text-sm sm:text-base text-white bg-purple-600 hover:bg-purple-700 px-4 py-1 rounded-lg shadow">
+                        Back
                     </Link>
                 </div>
-                <div>
-                    {
-                        cartHistory.map((cart) => (
-                            <CartHistoryComponent orderStatus={cart.orderStatus} cartDetails={cart.cartDetails} createdAt={cart.createdAt} key={cart._id} />
-                        ))
-                    }
+
+                {/* Cart History List */}
+                <div className="flex flex-col sm:flex-row gap-4 overflow-y-auto">
+                    {cartHistory.map((cart) => (
+                        <CartHistoryComponent
+                            key={cart._id}
+                            orderStatus={cart.orderStatus}
+                            cartDetails={cart.cartDetails}
+                            createdAt={cart.createdAt}
+                        />
+                    ))}
                 </div>
             </div>
+
         </div>
+
     )
 }
 
