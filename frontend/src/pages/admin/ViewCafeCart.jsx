@@ -44,6 +44,7 @@ function ViewCafeCart() {
                             key={cart._id}
                             orderBy={cart.orderBy}
                             cartDetails={cart.cartDetails}
+                            orderStatus={cart.orderStatus}
                         />
                     ))}
                 </div>

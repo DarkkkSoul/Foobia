@@ -7,6 +7,9 @@ function Header() {
             <NavLink to='/home'>
                 <img src="/foodImages/home.png" className='w-9 hover:opacity-75' />
             </NavLink>
+            <NavLink to='/history'>
+                history
+            </NavLink>
             <div className='font-semibold text-fuchsia-800 hover:opacity-75'>
                 DBIT eats
             </div>

@@ -11,6 +11,7 @@ import AdminCafe from './pages/admin/AdminCafe.jsx'
 import AdminCanteen from './pages/admin/AdminCanteen.jsx'
 import Auth from './pages/Authentication/Auth.jsx'
 import ViewCafeCart from './pages/admin/ViewCafeCart.jsx'
+import History from './pages/Cafeteria/History.jsx'
 
 createRoot(document.getElementById('root')).render(
     <CartProvider>
@@ -19,6 +20,7 @@ createRoot(document.getElementById('root')).render(
                 <Route index element={<Auth />} />
                 <Route path='/home' element={<App />} />
                 <Route path='/cafeteria' element={<CafeteriaMenu />} />
+                <Route path='/history' element={<History />} />
                 <Route path='/canteen' element={<CanteenMenu />} />
                 <Route path='/creators' element={<Creators />} />
                 <Route path='/checkout' element={<CheckoutPage />} />
