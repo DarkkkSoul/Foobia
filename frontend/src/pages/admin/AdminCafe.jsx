@@ -104,7 +104,7 @@ function AdminCafe() {
     return (
         <div className="min-h-screen flex flex-col lg:flex-row gap-y-8 lg:gap-x-10 bg-gradient-to-br from-pink-300 via-fuchsia-500 to-purple-800 p-4 sm:p-6">
 
-            <div className="flex flex-col gap-y-8 h-full bg-gradient-to-br from-pink-200 via-fuchsia-300 to-purple-400 w-full lg:w-[30%] p-4 sm:p-6 rounded-md">
+            <div className="flex flex-col gap-y-8 h-full bg-gradient-to-br from-pink-200 via-fuchsia-300 to-purple-400 w-full lg:w-[30%] p-4 sm:p-6 rounded-md shadow-2xl">
 
                 <div className="w-full bg-white rounded-xl shadow-md p-6 sm:p-8">
                     <h2 className="text-xl font-semibold text-purple-800 mb-6 text-center">Cafeteria</h2>
@@ -148,7 +148,7 @@ function AdminCafe() {
                 </div>
             </div>
 
-            <div className='w-full bg-gradient-to-br from-pink-200 via-fuchsia-300 to-purple-400 rounded-md p-4 sm:p-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 auto-rows-min gap-4'>
+            <div className='w-full bg-gradient-to-br from-pink-200 via-fuchsia-300 to-purple-400 shadow-2xl rounded-md p-4 sm:p-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 auto-rows-min gap-4'>
                 {cafeMenu.map((item) => (
                     <FoodItem key={item._id} foodName={item.foodName} price={item.price} />
                 ))}

@@ -1,12 +1,6 @@
 import React from 'react'
 
 function ViewCartCompo(props) {
-
-    // console.log(props.orderBy);
-    // props.cartDetails.map((item) => {
-    //     console.log('foodName:', item.foodName, 'price:', item.price, 'quantity:', item.quantity);
-    // })
-
     return (
         <div className="bg-gradient-to-tl from-fuchsia-300 to-fuchsia-600 shadow-lg rounded-xl px-4 border border-gray-300 w-full max-w-xs flex flex-col justify-between pb-10 pt-6">
             <div className="text-center text-xl font-bold text-black mb-4">
@@ -25,7 +19,6 @@ function ViewCartCompo(props) {
                 ))}
             </div>
         </div>
-
     )
 }
 

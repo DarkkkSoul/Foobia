@@ -9,7 +9,7 @@ function Total() {
     useEffect(() => {
         let sum = 0;
         cart.forEach((item) => {    // Here I can use .reduce()!
-            sum += Number(item.price);
+            sum += Number(item.price * item.quantity);
         })
         setTotal(sum);
     }, [cart]);

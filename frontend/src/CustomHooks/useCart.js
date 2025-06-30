@@ -58,11 +58,23 @@ function useCart() {
     const { cart, setCart } = useContext(CartContext);
 
     const addCafeItem = (_id) => {
-        cafeMenu.map((item) => {
-            if (item._id === _id) {
-                setCart((prevCart) => [...prevCart, item]);
-            }
-        });
+        const existingItem = cart.find(item => item._id === _id);
+        if (existingItem) {
+            const updatedCart = cart.map(item => {
+                if (item._id === _id) {
+                    return { ...item, quantity: item.quantity + 1 };
+                }
+                return item;
+            });
+            setCart(updatedCart);
+        }
+        else {
+            cafeMenu.map((item) => {
+                if (item._id === _id) {
+                    setCart((prevCart) => [...prevCart, item]);
+                }
+            });
+        }
     };
 
     const addCanteenItem = (_id) => {

@@ -34,6 +34,9 @@ function ViewCafeCart() {
     return (
         <div className="min-h-screen bg-gradient-to-br from-pink-300 via-fuchsia-500 to-purple-800 p-4 sm:p-6">
             <div className='bg-gradient-to-br from-pink-200 via-fuchsia-300 to-purple-400 min-h-screen w-full rounded-r-4xl'>
+                <div>
+                    <Link to='/admin/cafeteria'>Back</Link>
+                </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-10 gap-5">
                     {completeCart.map((cart) => (
