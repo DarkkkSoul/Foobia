@@ -25,7 +25,6 @@ function Auth() {
             });
 
             const data = await response.json();
-            console.log(data);
 
             if (response.ok) {
                 setMessage(data.message);
@@ -33,7 +32,7 @@ function Auth() {
                     if (data.data.user.email === 'admin@gmail.com') {
                         navigate('/admin/cafeteria');
                     } else {
-                        navigate('/home');
+                        navigate('/cafeteria');
                     }
                 }, 1000)
             } else {

@@ -3,19 +3,26 @@ import { NavLink } from 'react-router'
 
 function Header() {
     return (
-        <div className='bg-white my-6 sticky top-6 z-10 flex text-xl px-2 py-4 shadow-2xl rounded-xl justify-around mx-8 border-fuchsia-800 border-2 items-center'>
-            <NavLink to='/home'>
-                <img src="/foodImages/home.png" className='w-9 hover:opacity-75' />
-            </NavLink>
-            <NavLink to='/history'>
-                history
-            </NavLink>
-            <div className='font-semibold text-fuchsia-800 hover:opacity-75'>
-                DBIT eats
+        <div className='bg-gradient-to-r from-fuchsia-500 to-fuchsia-900 fixed top-0 left-0 right-0 z-10 flex text-2xl px-9 py-4 shadow-xl items-center justify-between'>
+
+            <div className='font-semibold text-white/90 hover:opacity-75'>
+                <NavLink to='/cafeteria'>
+                    DBIT eats
+                </NavLink>
             </div>
-            <NavLink to='/checkout'>
-                <img src="/foodImages/cartt.png" className='w-9 hover:opacity-75' />
-            </NavLink>
+
+            <div className='flex items-center justify-center gap-x-3'>
+                <div>
+                    <NavLink to='/history'>
+                        <img src="/history.png" className='w-6 hover:opacity-75' />
+                    </NavLink>
+                </div>
+                <div>
+                    <NavLink to='/checkout'>
+                        <img src="/cart.png" className='w-8 hover:opacity-75' />
+                    </NavLink>
+                </div>
+            </div>
         </div>
     )
 }

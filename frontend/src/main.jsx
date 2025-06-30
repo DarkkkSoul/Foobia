@@ -18,15 +18,15 @@ createRoot(document.getElementById('root')).render(
         <BrowserRouter>
             <Routes>
                 <Route index element={<Auth />} />
-                <Route path='/home' element={<App />} />
                 <Route path='/cafeteria' element={<CafeteriaMenu />} />
                 <Route path='/history' element={<History />} />
-                <Route path='/canteen' element={<CanteenMenu />} />
-                <Route path='/creators' element={<Creators />} />
                 <Route path='/checkout' element={<CheckoutPage />} />
                 <Route path='/admin/cafeteria' element={<AdminCafe />} />
-                <Route path='/admin/canteen' element={<AdminCanteen />} />
                 <Route path='/admin/cafeteria/cart' element={<ViewCafeCart />} />
+                {/* <Route path='/home' element={<App />} /> */}
+                {/* <Route path='/canteen' element={<CanteenMenu />} /> */}
+                {/* <Route path='/creators' element={<Creators />} /> */}
+                {/* <Route path='/admin/canteen' element={<AdminCanteen />} /> */}
             </Routes>
         </BrowserRouter>
     </CartProvider>
