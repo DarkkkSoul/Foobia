@@ -1,16 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 function ViewCartCompo(props) {
 
-    const handleStatus = () => {
-        if (!props.orderStatus) {
-            props.orderStatus = true;
-            console.log(props.orderStatus);
-        }
+    const handleStatus = async (id) => {
+
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/cart/cafeteria/update-status/${id}`, {
+            method: 'PUT',
+            credentials: 'include'
+        });
+
+        const data = await response.json();
+
+        console.log(data);
     }
 
     return (
-        <div className="bg-gradient-to-tl from-fuchsia-300 to-fuchsia-600 shadow-lg rounded-xl px-4 border border-gray-300 w-full max-w-xs flex flex-col justify-between pb-10 pt-6">
+        <div className="bg-gradient-to-tl from-fuchsia-300 to-fuchsia-600 shadow-lg rounded-xl px-4 border border-gray-300 w-full max-w-xs flex flex-col justify-between pb-10 pt-6" id={props.id}>
+
             <div className="text-center text-xl font-bold text-black mb-4">
                 Ordered by: {props.orderBy}
             </div>
@@ -28,9 +34,11 @@ function ViewCartCompo(props) {
                     ))
                 }
             </div>
-            <button onClick={handleStatus}>
+
+            <button onClick={() => handleStatus(props.id)}>
                 Order Ready
             </button>
+
         </div>
     )
 }

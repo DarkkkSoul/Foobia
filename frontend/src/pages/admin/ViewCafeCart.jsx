@@ -42,6 +42,7 @@ function ViewCafeCart() {
                     {completeCart.map((cart) => (
                         <ViewCartCompo
                             key={cart._id}
+                            id={cart._id}
                             orderBy={cart.orderBy}
                             cartDetails={cart.cartDetails}
                             orderStatus={cart.orderStatus}
