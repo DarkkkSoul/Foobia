@@ -5,6 +5,10 @@ const cartModel = new mongoose.Schema({
         type: Array,
         required: true
     },
+    orderStatus: {
+        type: Boolean,
+        default: false,
+    },
     orderBy: {
         type: mongoose.Schema.Types.String,
         ref: 'User',
