@@ -10,8 +10,6 @@ function ViewCartCompo(props) {
         });
 
         const data = await response.json();
-
-        console.log(data);
     }
 
     return (
@@ -35,7 +33,8 @@ function ViewCartCompo(props) {
                 }
             </div>
 
-            <button onClick={() => handleStatus(props.id)}>
+            <button onClick={() => handleStatus(props.id)}
+                className="mt-4 bg-gradient-to-r from-purple-500 to-purple-900 text-white py-2 font-semibold tracking-wider rounded-md duration-300 cursor-pointer hover:scale-105 active:scale-95 transition-all mx-10 px-1">
                 Order Ready
             </button>
 
