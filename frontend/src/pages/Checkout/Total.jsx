@@ -60,16 +60,20 @@ function Total() {
         )
     } else {
         return (
-            <div className='flex items-center justify-center flex-col gap-y-5 relative'>
-                <hr className='text-white w-65  border-2' />
+            <div className='flex items-center justify-center flex-col gap-y-5'>
+                <hr className='text-black w-60 border-1' />
 
-                <div className='flex justify-between bg-white mx-13 text-lg px-6 py-4 rounded-xl '>
+                <div className='flex justify-between bg-white mx-13 text-lg px-6 py-4 rounded-xl w-60'>
                     <div className='text-fuchsia-900'>Total</div>
                     <div className='font-semibold'>
-                        {total} Rs</div>
+                        {total} Rs
+                    </div>
                 </div>
-                <button className='bg-white bottom-5 right-5 hover:opacity-80 text-fuchsia-900 font-semibold rounded-xl px-6 py-2' onClick={handleCheckout}>Checkout</button>
-                {message && <div className='text-white text-center text-sm font-semibold'>{message}</div>}
+
+                <div className='flex flex-col items-center justify-center gap-y-5'>
+                    <button className='bg-white hover:opacity-80 text-fuchsia-900 font-semibold rounded-xl px-6 py-2 ' onClick={handleCheckout}>Checkout</button>
+                    {message && <div className='text-white text-center text-sm font-semibold'>{message}</div>}
+                </div>
             </div>
         )
     }
