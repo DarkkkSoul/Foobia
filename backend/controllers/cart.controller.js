@@ -34,7 +34,6 @@ export const viewCartData = async (req, res, next) => {
 
 export const viewHistory = async (req, res, next) => {
     try {
-
         const history = await Cart.find({ orderBy: req.user.name }).sort({ createdAt: -1 });
 
         res.status(200).json({

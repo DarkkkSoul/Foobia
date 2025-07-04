@@ -4,7 +4,7 @@ import useCart from '../../CustomHooks/useCart';
 function Total() {
 
     const [total, setTotal] = useState(0);
-    const { cart } = useCart();
+    const { cart, clearCart } = useCart();
 
     useEffect(() => {
         let sum = 0;
@@ -44,6 +44,9 @@ function Total() {
 
             if (response.ok) {
                 setMessage(data.message);
+                setTimeout(() => {
+                    clearCart();
+                }, 1500);
             } else {
                 setMessage(data.errorMessage);
             }

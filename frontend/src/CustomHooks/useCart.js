@@ -57,6 +57,11 @@ function useCart() {
 
     const { cart, setCart } = useContext(CartContext);
 
+
+    const clearCart = () => {
+        setCart([]);
+    }
+
     const addCafeItem = (_id) => {
         const existingItem = cart.find(item => item._id === _id);
         if (existingItem) {
@@ -89,7 +94,7 @@ function useCart() {
         setCart((prevCart) => prevCart.filter((item) => item._id !== _id));
     }
 
-    return { cart, addCafeItem, deleteItem, addCanteenItem };
+    return { cart, addCafeItem, deleteItem, addCanteenItem, clearCart };
 }
 
 export default useCart;
