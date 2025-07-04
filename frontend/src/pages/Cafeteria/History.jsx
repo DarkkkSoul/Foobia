@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useTransition } from 'react'
 import CartHistoryComponent from './CartHistoryComponent';
 import { Link } from 'react-router';
 
@@ -18,10 +18,8 @@ function History() {
 
                 setCartHistory(data.history);
 
-                console.log(data);
-
                 if (response.ok) {
-                    console.log(data.message)
+                    // console.log(data.message);
                 } else {
                     console.log(data.errorMessage);
                 }
@@ -30,7 +28,14 @@ function History() {
                 console.log('ERROR:', error);
             }
         }
+
         viewHistory();
+
+        const intervalId = setInterval(() => {
+            viewHistory();
+        }, 30000);
+
+        () => { clearInterval(intervalId); };
     }, []);
 
     return (

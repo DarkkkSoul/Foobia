@@ -31,6 +31,10 @@ function ViewCafeCart() {
             }
         }
         viewCart();
+        const intervalId = setInterval(() => {
+            viewCart();
+        }, 2000);
+        () => { clearInterval(intervalId); }
     }, []);
 
 
