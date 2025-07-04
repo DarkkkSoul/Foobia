@@ -8,9 +8,8 @@ function App() {
         <>
             <div className='flex items-center justify-center h-screen w-full p-5'>
                 <div className='bg-fuchsia-800 w-107 min-h-170 flex flex-col relative'>
-                    <Header /> {/* Header stays at the top */}
+                    <Header />
 
-                    {/* Significantly lifting the center content upward */}
                     <div className="flex flex-col flex-grow items-center justify-center gap-4 mt-[-120px]">
                         <div className='flex flex-row gap-4 items-center justify-center'>
                             <NavLink to='/cafeteria'

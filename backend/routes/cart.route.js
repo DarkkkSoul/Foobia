@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { sentCartData, updateStatus, viewCartData, viewHistory } from "../controllers/cart.controller.js";
+import { deleteCart, sentCartData, updateStatus, viewCartData, viewHistory } from "../controllers/cart.controller.js";
 import authorizeMiddleware from "../middlewares/auth.middleware.js";
 
 const cartRouter = Router();
@@ -11,6 +11,8 @@ cartRouter.get('/cafeteria/admin', authorizeMiddleware, viewCartData);
 
 cartRouter.get('/cafeteria/history', authorizeMiddleware, viewHistory);
 
-cartRouter.put('/cafeteria/update-status/:cartid', authorizeMiddleware, updateStatus)
+cartRouter.put('/cafeteria/update-status/:cartid', authorizeMiddleware, updateStatus);
+
+cartRouter.delete('/cafeteria/delete', deleteCart);
 
 export default cartRouter;

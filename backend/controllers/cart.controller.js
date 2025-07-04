@@ -19,7 +19,7 @@ export const sentCartData = async (req, res, next) => {
 export const viewCartData = async (req, res, next) => {
     try {
 
-        const completeCart = await Cart.find();
+        const completeCart = await Cart.find().sort({ createdAt: -1 });
 
         res.status(200).json({
             success: true,
@@ -35,7 +35,7 @@ export const viewCartData = async (req, res, next) => {
 export const viewHistory = async (req, res, next) => {
     try {
 
-        const history = await Cart.find({ orderBy: req.user.name });
+        const history = await Cart.find({ orderBy: req.user.name }).sort({ createdAt: -1 });
 
         res.status(200).json({
             success: true,
@@ -70,6 +70,14 @@ export const updateStatus = async (req, res, next) => {
         }
 
     } catch (error) {
+        next(error);
+    }
+}
+
+export const deleteCart = async (req, res, next) => {
+    try {
+        console.log(Date.now());
+    } catch {
         next(error);
     }
 }
