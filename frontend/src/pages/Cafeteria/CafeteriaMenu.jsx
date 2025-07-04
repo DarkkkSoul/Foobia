@@ -5,7 +5,7 @@ import Header from '../Header'
 function CafeteriaMenu() {
 
     const [cafeMenu, setCafeMenu] = useState([]);
-    const [errorMessage, setErrorMessage] = useState('');
+    const [message, setMessage] = useState('');
 
     useEffect(() => {
         const displayCafeFood = async () => {
@@ -20,7 +20,7 @@ function CafeteriaMenu() {
                 if (response.ok) {
                     setCafeMenu(data.menu.cafeMenu);
                 } else {
-                    setErrorMessage(data.errorMessage);
+                    setMessage(data.errorMessage);
                 }
 
             } catch (error) {
@@ -39,7 +39,7 @@ function CafeteriaMenu() {
                 <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-y-3 justify-items-center'>
                     {
                         cafeMenu.map((food) => (
-                            <CafeFoodGrid foodName={food.foodName} price={food.price} key={food._id} id={food._id} />
+                            <CafeFoodGrid foodName={food.foodName} price={food.price} key={food._id} id={food._id} soldOut={food.isSoldOut} />
                         ))
                     }
                 </div>

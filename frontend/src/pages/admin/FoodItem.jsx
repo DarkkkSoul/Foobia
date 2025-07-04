@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 function FoodItem(props) {
 
@@ -12,7 +12,7 @@ function FoodItem(props) {
             const data = await response.json();
 
             if (response.ok) {
-                console.log(data.message);
+                // console.log(data.message);
             } else {
                 console.log(data.errorMessage);
             }
@@ -32,7 +32,7 @@ function FoodItem(props) {
             const data = await response.json();
 
             if (response.ok) {
-                console.log(data.message);
+                // console.log(data.message);
             } else {
                 console.log(data.errorMessage);
             }
