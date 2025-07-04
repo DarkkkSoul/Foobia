@@ -49,7 +49,6 @@ export const viewHistory = async (req, res, next) => {
 export const updateStatus = async (req, res, next) => {
     try {
         const { cartid } = req.params;
-        console.log(cartid)
 
         const cart = await Cart.findById(cartid);
 

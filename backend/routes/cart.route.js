@@ -13,6 +13,8 @@ cartRouter.get('/cafeteria/history', authorizeMiddleware, viewHistory);
 
 cartRouter.put('/cafeteria/update-status/:cartid', authorizeMiddleware, updateStatus);
 
+
 cartRouter.delete('/cafeteria/delete', deleteCart);
+
 
 export default cartRouter;

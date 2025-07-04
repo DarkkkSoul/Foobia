@@ -9,6 +9,10 @@ const cafeFoodModel = new mongoose.Schema({
         type: String,
         required: true,
     },
+    isSoldOut: {
+        type: Boolean,
+        default: false
+    },
     quantity: {
         type: Number,
         default: 1,

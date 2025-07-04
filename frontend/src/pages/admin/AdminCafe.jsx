@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import FoodItem from './FoodItem';
 import { useNavigate } from 'react-router-dom'
-import { Link } from 'react-router';
 
 function AdminCafe() {
 
@@ -83,6 +82,11 @@ function AdminCafe() {
             }
         }
         displayCafeFood();
+
+        setInterval(() => {
+            displayCafeFood();
+        }, 1000);
+
     }, [message]);
 
     const handleLogout = async () => {
@@ -154,10 +158,12 @@ function AdminCafe() {
                 </div>
             </div>
 
-            <div className='w-full bg-gradient-to-br from-pink-200 via-fuchsia-300 to-purple-400 shadow-2xl rounded-md p-4 sm:p-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 auto-rows-min gap-4'>
-                {cafeMenu.map((item) => (
-                    <FoodItem key={item._id} foodName={item.foodName} price={item.price} />
-                ))}
+            <div className='w-full bg-gradient-to-br from-pink-200 via-fuchsia-300 to-purple-400 shadow-2xl rounded-md p-4 sm:p-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 auto-rows-min gap-7'>
+                {
+                    cafeMenu.map((item) => (
+                        <FoodItem key={item._id} id={item._id} foodName={item.foodName} price={item.price} soldOut={item.isSoldOut} />
+                    ))
+                }
                 {errorMessage && <p className="text-purple-700 mt-4 text-center text-xs col-span-full">{errorMessage}</p>}
             </div>
 

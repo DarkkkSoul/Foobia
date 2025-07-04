@@ -40,3 +40,45 @@ export const showCafeMenu = async (req, res, next) => {
         next(error);
     }
 }
+
+export const itemSoldOut = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+
+        const foodItem = await CafeFood.findById(id);
+
+        if (foodItem) {
+            foodItem.isSoldOut = true;
+            await foodItem.save();
+            res.status(200).json({
+                success: true,
+                message: 'Item Sold Out',
+                data: foodItem
+            })
+        }
+
+    } catch (error) {
+        next(error);
+    }
+}
+
+export const itemAvailable = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+
+        const foodItem = await CafeFood.findById(id);
+
+        if (foodItem.isSoldOut) {
+            foodItem.isSoldOut = false;
+            await foodItem.save();
+            res.status(200).json({
+                success: true,
+                message: 'Item Available',
+                data: foodItem
+            })
+        }
+
+    } catch (error) {
+        next(error);
+    }
+}
