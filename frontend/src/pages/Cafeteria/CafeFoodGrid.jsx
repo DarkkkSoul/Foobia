@@ -7,6 +7,7 @@ function CafeFoodGrid(props) {
         <button
             id={props.id}
             onClick={() => addCafeItem(props.id)}
+            disabled={props.soldOut}
             className='
          bg-white/75 inline-flex flex-col flex-wrap items-center justify-center px-9 pb-3 rounded-2xl gap-y-2 w-36 sm:w-[180px] hover:scale-105 active:scale-95 transition-all cursor-pointer text-fuchsia-700 font-semibold
          relative pt-6'>
