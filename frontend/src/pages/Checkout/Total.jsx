@@ -4,7 +4,7 @@ import useCart from '../../CustomHooks/useCart';
 function Total() {
 
     const [total, setTotal] = useState(0);
-    const { cart, clearCart } = useCart();
+    const { cart, clearCart, deleteItem, addCafeItem } = useCart();
 
     useEffect(() => {
         let sum = 0;
@@ -29,8 +29,21 @@ function Total() {
         quantity: item.quantity
     }));
 
+    // const [isSoldOut, setIsSoldOut] = useState(false);
+    // const [soldOutFood, setSoldOutFood] = useState('');
+    // useEffect(() => {
+    //     cart.forEach((item) => {
+    //         if (item.isSoldOut) {
+    //             setIsSoldOut(true);
+    //             setSoldOutFood(item.foodName);
+    //         }
+    //     })
+    // }, [cart, addCafeItem, deleteItem]);
     const handleCheckout = async () => {
         try {
+            // if (isSoldOut) {
+            //     console.log(`${soldOutFood} is sold out!`);
+            // } else {
             const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/cart/checkout`, {
                 method: 'POST',
                 credentials: 'include',
@@ -50,6 +63,7 @@ function Total() {
             } else {
                 setMessage(data.errorMessage);
             }
+            // }
         } catch (error) {
             console.log('ERROR:', error);
         }
