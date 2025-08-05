@@ -12,12 +12,14 @@ import AdminCanteen from './pages/admin/AdminCanteen.jsx'
 import Auth from './pages/Authentication/Auth.jsx'
 import ViewCafeCart from './pages/admin/ViewCafeCart.jsx'
 import History from './pages/Cafeteria/History.jsx'
+import SignUp from './pages/Authentication/SignUp.jsx'
 
 createRoot(document.getElementById('root')).render(
     <CartProvider>
         <BrowserRouter>
             <Routes>
                 <Route index element={<Auth />} />
+                <Route path='/signup' element={<SignUp />} />
                 <Route path='/cafeteria' element={<CafeteriaMenu />} />
                 <Route path='/history' element={<History />} />
                 <Route path='/checkout' element={<CheckoutPage />} />
