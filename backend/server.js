@@ -37,7 +37,7 @@ app.use(errorMiddleware);
 
 
 app.get('/', (req, res) => {
-    res.send('<h2>Welcome to the backend of DBIT eats</h2>')
+    res.send('<h2>Welcome to the backend of Foobia</h2>')
 });
 
 app.listen(port, () => {

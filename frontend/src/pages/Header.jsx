@@ -20,7 +20,7 @@ function Header() {
 
             <div className='font-semibold text-white/90 hover:opacity-75'>
                 <NavLink to='/cafeteria'>
-                    DBIT eats
+                    Foobia
                 </NavLink>
             </div>
 

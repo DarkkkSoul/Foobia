@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router';
+import Footer from '../../Footer';
 
 function SignUp() {
 
@@ -55,53 +56,74 @@ function SignUp() {
    })
 
    return (
-      <div className="h-screen flex items-center justify-center bg-gradient-to-br from-pink-300 via-fuchsia-500 to-purple-800 p-6">
-         <div className="p-9 bg-white/30 backdrop-blur-md rounded-xl shadow-lg flex justify-evenly">
-            <div className="bg-white rounded-xl p-8 shadow-md">
-               <h2 className="text-2xl font-bold text-purple-800 mb-6 text-center">Welcome - SignIn </h2>
-               <form className="flex flex-col gap-4" onSubmit={handleSignUp}>
-                  <div className="flex flex-col">
-                     <label className="text-sm font-medium text-gray-700">Name</label>
-                     <input
-                        type="text"
-                        placeholder="Enter your name"
-                        className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                        value={signInName}
-                        onChange={(e) => setSignInName(e.target.value)}
-                     />
+      <>
+         <div className="h-screen flex items-center justify-center bg-gradient-to-br from-pink-300 via-fuchsia-500 to-purple-800 p-6">
+            <div className="flex flex-col md:flex-row bg-white/30 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden max-w-4xl w-full">
+
+               {/* Left Side: Illustration / Branding */}
+               <div className="hidden md:flex flex-col justify-center items-center bg-gray-200/80 p-1 w-1/2">
+                  <img
+                     src="/foodImages/leftpanel-signup.png"
+                     alt="Food Illustration"
+                     className="rounded-xl"
+                  />
+               </div>
+
+               {/* Right Side: SignUp Form */}
+               <div className="w-full md:w-1/2 p-8">
+                  <h2 className="text-2xl font-bold text-purple-950 tracking-tight text-center mb-1">Create a new Account</h2>
+                  <p className='text-sm text-white/100 italic text-center mb-4'>"Because hunger waits for no one."</p>
+                  <form className="flex flex-col gap-4" onSubmit={handleSignUp}>
+                     <div className="flex flex-col">
+                        <label className="text-md font-semibold text-white">Name</label>
+                        <input
+                           type="text"
+                           placeholder="e.g-Devansh"
+                           className="border-2 border-white/50 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                           value={signInName}
+                           onChange={(e) => setSignInName(e.target.value)}
+                        />
+                     </div>
+                     <div className="flex flex-col">
+                        <label className="text-md font-semibold text-white">Email</label>
+                        <input
+                           type="email"
+                           placeholder="e.g-devansh@gmail.com"
+                           className="border-2 border-white/50 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                           value={signInEmail}
+                           onChange={(e) => setSignInEmail(e.target.value)}
+                        />
+                     </div>
+                     <div className="flex flex-col">
+                        <label className="text-md font-semibold text-white">Password</label>
+                        <input
+                           type="password"
+                           placeholder="e.g-Devansh@123"
+                           className="border-2 border-white/50 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                           value={signInPassword}
+                           onChange={(e) => setSignInPassword(e.target.value)}
+                        />
+                     </div>
+                     <button
+                        type="submit"
+                        className="mt-4 bg-purple-700 text-white py-2 rounded-md hover:scale-105 hover:bg-purple-800 transition-transform duration-300"
+                     >
+                        Sign Up
+                     </button>
+                  </form>
+                  <div className="text-sm text-center pt-3">
+                     Already have an <Link to={'/'} className="underline font-semibold">account</Link>?
                   </div>
-                  <div className="flex flex-col">
-                     <label className="text-sm font-medium text-gray-700">Email</label>
-                     <input
-                        type="email"
-                        placeholder="Enter email"
-                        className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                        value={signInEmail}
-                        onChange={(e) => setSignInEmail(e.target.value)}
-                     />
-                  </div>
-                  <div className="flex flex-col">
-                     <label className="text-sm font-medium text-gray-700">Password</label>
-                     <input
-                        type="password"
-                        placeholder="Enter password"
-                        className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                        value={signInPassword}
-                        onChange={(e) => setSignInPassword(e.target.value)}
-                     />
-                  </div>
-                  <button
-                     type="submit"
-                     className="mt-4 bg-purple-700 text-white py-2 rounded-md hover:bg-purple-800 transition duration-300"
-                  >
-                     SignUp
-                  </button>
-               </form>
-               <div className='text-sm text-center pt-1.5'>Already have an <Link to={'/'} className='underline'>account</Link>?</div>
-               {signInMessage && <p className="text-purple-700 mt-4 text-center text-xs">{signInMessage}</p>}
+                  {signInMessage && (
+                     <p className="text-purple-700 mt-4 text-center text-xs">{signInMessage}</p>
+                  )}
+               </div>
+
             </div>
          </div>
-      </div>
+         <Footer />
+      </>
+
    )
 }
 

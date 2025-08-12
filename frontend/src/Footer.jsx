@@ -18,7 +18,7 @@ function Footer() {
             </div>
             <div className='flex flex-col justify-between'>
                 <div>Peace Out!</div>
-                <div>&copy; 2025 DBIT eats. All rights reserved.</div>
+                <div>&copy; 2025 Foobia. All rights reserved.</div>
             </div>
         </div>
     )
