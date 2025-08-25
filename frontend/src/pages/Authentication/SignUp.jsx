@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router-dom';
 import Footer from '../../Footer';
 
 function SignUp() {
@@ -61,11 +61,11 @@ function SignUp() {
             <div className="flex flex-col md:flex-row bg-white/30 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden max-w-4xl w-full">
 
                {/* Left Side: Illustration / Branding */}
-               <div className="hidden md:flex flex-col justify-center items-center bg-gray-200/80 p-1 w-1/2">
+               <div className="hidden md:flex flex-col justify-center items-center bg-gray-200/80 w-1/2 p-1">
                   <img
                      src="/foodImages/leftpanel-signup.png"
                      alt="Food Illustration"
-                     className="rounded-xl"
+                     className="h-full w-full object-cover rounded-xl"
                   />
                </div>
 
@@ -110,6 +110,9 @@ function SignUp() {
                      >
                         Sign Up
                      </button>
+                     <div className="mt-3 text-[13px] text-white/90 bg-white/20 rounded-md p-3 leading-tight">
+                        Try logging with demo account <span className="font-medium">(details in signin page)</span>.
+                     </div>
                   </form>
                   <div className="text-sm text-center pt-3">
                      Already have an <Link to={'/'} className="underline font-semibold">account</Link>?

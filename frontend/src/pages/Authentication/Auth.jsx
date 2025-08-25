@@ -66,7 +66,7 @@ function Auth() {
             <img
               src="/foodImages/leftpanel-login.png" // replace with your food-themed illustration
               alt="Food Illustration"
-              className='rounded-xl'
+              className="h-full w-full object-cover rounded-xl"
             />
           </div>
 
@@ -101,6 +101,11 @@ function Auth() {
               >
                 Log In
               </button>
+              <div className="mt-3 text-[13px] text-white bg-white/20 rounded-md p-3 leading-tight">
+                <p className="font-semibold">Try demo:</p>
+                <p className="mt-1"><span className="font-medium">For Student panel</span>: email - <span className="font-mono">student1@gmail.com</span>, password - <span className="font-mono">asd</span></p>
+                <p className="mt-1"><span className="font-medium">For Admin panel</span>: email - <span className="font-mono">admin@gmail.com</span>, password - <span className="font-mono">asd</span></p>
+              </div>
             </form>
             <div className="text-sm text-center pt-3">
               Don’t have an <Link to={'/signup'} className="underline font-semibold">account</Link>?
