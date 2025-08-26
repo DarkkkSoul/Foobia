@@ -8,6 +8,7 @@ function Auth() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const [loding, setLoding] = useState(false)
 
   const navigate = useNavigate();
 
@@ -15,7 +16,7 @@ function Auth() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-
+      setLoding(true);
       const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/auth/login`, {
         method: "POST",
         body: JSON.stringify({ email, password }),
@@ -28,6 +29,7 @@ function Auth() {
       const data = await response.json();
 
       if (response.ok) {
+        setLoding(false);
         setMessage(data.message);
         setTimeout(() => {
           if (data.data.user.email === 'admin@gmail.com') {
@@ -37,6 +39,7 @@ function Auth() {
           }
         }, 1000)
       } else {
+        setLoding(false);
         setMessage(data.errorMessage);
       }
 
@@ -110,8 +113,11 @@ function Auth() {
             <div className="text-sm text-center pt-3">
               Don’t have an <Link to={'/signup'} className="underline font-semibold">account</Link>?
             </div>
+            {loding && (
+              <p className="text-white mt-4 text-center text-xs tracking-wide">Loading...</p>
+            )}
             {message && (
-              <p className="text-purple-700 mt-4 text-center text-xs">{message}</p>
+              <p className="text-red-700 mt-4 text-center text-xs tracking-wide">{message}</p>
             )}
           </div>
 

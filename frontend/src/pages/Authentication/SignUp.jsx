@@ -9,11 +9,12 @@ function SignUp() {
    const [signInEmail, setSignInEmail] = useState('');
    const [signInPassword, setSignInPassword] = useState('');
    const [signInMessage, setSignInMessage] = useState('');
+   const [loding, setLoding] = useState(false)
    const navigate = useNavigate();
    const handleSignUp = async (e) => {
       e.preventDefault();
       try {
-
+         setLoding(true);
          const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/auth/signup`, {
             method: "POST",
             body: JSON.stringify({ name: signInName, email: signInEmail, password: signInPassword }),
@@ -26,6 +27,7 @@ function SignUp() {
          const data = await response.json();
 
          if (response.ok) {
+            setLoding(false);
             setSignInMessage(data.message);
             setTimeout(() => {
                if (data.data.user.email === 'admin@gmail.com') {
@@ -35,6 +37,7 @@ function SignUp() {
                }
             }, 1000)
          } else {
+            setLoding(false);
             setSignInMessage(data.errorMessage);
          }
 
@@ -117,8 +120,11 @@ function SignUp() {
                   <div className="text-sm text-center pt-3">
                      Already have an <Link to={'/'} className="underline font-semibold">account</Link>?
                   </div>
+                  {loding && (
+                     <p className="text-white mt-4 text-center text-xs tracking-wide">Loading...</p>
+                  )}
                   {signInMessage && (
-                     <p className="text-purple-700 mt-4 text-center text-xs">{signInMessage}</p>
+                     <p className="text-red-700 mt-4 text-center text-xs">{signInMessage}</p>
                   )}
                </div>
 
